@@ -99,6 +99,9 @@ handleReset() {
                          timerRunning: false})
           clearInterval(this.timer)
        }
+       this.state.buttonActive === "shortBreak" ? 
+       this.relaxingFive.pause() : 
+        this.relaxingTen.pause()
     }
  resetTimer()
 }

@@ -18,7 +18,7 @@ return <div>
       after the tomato-shaped kitchen timer that Cirillo used as a
       university student.
     </div>
-    <img src={tomatoPic} className="tomato-img grow" alt="tomato-timer-image" />
+    <img src={tomatoPic} className="tomato-img grow ma4" alt="tomato-timer-image" />
   </article>
   {/*Bottom-Container */}
   <div className="bottom-container">

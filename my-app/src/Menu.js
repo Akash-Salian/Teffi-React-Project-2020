@@ -27,7 +27,7 @@ return <div className="Teffi">
             <a className="menu-font dim" href="#about">About</a>
           </li>
           <li>
-            <img className="settings grow" src={settings} alt="settings" />
+            <img className="settings grow" src={settings} alt="settings" onClick = {<settings />} />
           </li>
         </ul>
       </nav>

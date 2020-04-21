@@ -17,8 +17,8 @@ class Time extends Component {
 
 render() {
 return (
-     <div className="tomato-timer ma0">
-            <h1 className="twentyfive fw2 black-90"> {secondsToString(this.props.time)} </h1>
+     <div className="tomato-timer ma0" >
+            <h1 className="twentyfive fw2 black-90 dim"> {secondsToString(this.props.time)} </h1>
     </div>
 );
     }

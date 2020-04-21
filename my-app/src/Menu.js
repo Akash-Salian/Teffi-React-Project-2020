@@ -1,9 +1,6 @@
 import React,{Component} from 'react';
-import ReactDom from 'react-dom';
 import settings from './settings-icon.png';
 import watch from './Teffi.png';
-import Timer from './Timer';
-import Bottom from './Bottom';
 import 'tachyons';
 
 class Menu extends Component{
@@ -16,7 +13,7 @@ return <div className="Teffi">
     <div className="nav-bar">
       <nav title="main">
         <ul className="main-menu">
-          <li><a href="#top-container"><img className="logo grow" src={watch} alt="logo"/></a></li>
+          <li><a href="#mid-container"><img className="logo grow dim" src={watch} alt="logo"/></a></li>
           <li className="menu-item">
             <a className="menu-font dim" href="#top-container">Home </a>
           </li>
@@ -36,7 +33,7 @@ return <div className="Teffi">
 
     <div className="top-container" id="top-container">
       <div className="bg-filter">
-        <img className="clock grow" src={watch} alt="teffi-clock" />
+        <img className="clock grow" href="#mid-container" src={watch} alt="teffi-clock" />
         <h1 className="main-title">Teffi.</h1>
         <h3>Study Like A Pro!</h3>
       </div>

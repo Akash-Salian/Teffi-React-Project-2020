@@ -1,35 +1,51 @@
 import React, {Component} from 'react';
 import loud from './soundIcon.png';
 import mute from './soundMute.png';
+import volumeOn from './volumeOn.mp3';
+import 'tachyons';
 
 class Sound extends Component {
 
+toggleSound = (e) => {
 
-    toggleSound = (e) => {
-        this.props.sound === "on" ?
+    this.ding = new Audio(volumeOn);
+
+        if (this.props.sound === "on") {
+            
         this.changeSoundAttributes("off",
         process.env.PUBLIC_URL
-        + mute, e ) :
+        + mute, e ) 
+                this.props.music.pause();
+        
+        }
+        else {
         this.changeSoundAttributes("on",
         process.env.PUBLIC_URL
         + loud, e )
-  
+           
+                this.ding.play();
+                this.props.music.pause() 
+                if(this.props.timerRunning === true) {
+                    this.props.music.play()
+                }
+        }
 
-    }
+}
 
-changeSoundAttributes = (toggle, src,e) => {
+changeSoundAttributes = (toggle, src, e) => {
     this.props.setSound(toggle)
     e.target.src = src
+
 }
 
 
 render() {
     return(
         <>
-        <button className="soundButton grow" onClick={(e) => {
+        <span onClick={(e) => {
         this.toggleSound(e)}}>
-            <img src={process.env.PUBLIC_URL + loud}/>
-        </button>
+            <img  className="soundButton dim grow" src={process.env.PUBLIC_URL + loud} alt =""/>
+        </span>
         </>
     )
 

@@ -53,14 +53,16 @@
   }
 
 .tomato-timer{
-text-align: center;
-position: relative;
-width: auto;
+  text-align: center;
+  position: relative;
+  width: auto;
+ 
 }
 
 .twentyfive{
   position: relative;
   top: 100px;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 900px) {
@@ -92,11 +94,10 @@ width: auto;
 }
 
 .soundButton{
-  border-radius: 100%;
+  position: relative;
   background-color: none;
-  border: 0;
-  margin-bottom: 50px;
-  margin-top: 10px;
+  bottom: 30px;
+  cursor: pointer;
 }
 
 
@@ -142,6 +143,8 @@ width: auto;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+    user-select: none;
+    font-style: none;
   }
   .hud-heading {
     border: 0.5px solid #a66;
@@ -150,6 +153,8 @@ width: auto;
     border-radius: 50px;
     background-color: #e1ebf2;
     font-size: 0.9rem;
+    user-select: none;
+    font-style: none;
   }
 
   .control-start,
@@ -159,5 +164,7 @@ width: auto;
     margin: 20px 10px 30px 10px;
     padding: 8px 25px 8px 25px;
     border-radius: 50px;
+    user-select: none;
+    font-style: none;
   }
 }

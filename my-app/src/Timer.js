@@ -162,7 +162,7 @@ render() {
 return <div className="mid-container" id="mid-container">
       <div className="timer-hud">
         <span className="hud-heading grow" id="pomodoro" onClick={() => this.setState({interval: (25 * 60), buttonActive: "pomodoro"})}> Pomodoro</span>
-        <span className="hud-heading grow" id="shortBreak" onClick={() => this.setState({interval: (0.05* 60), buttonActive: "shortBreak"})}>Short Break</span>
+        <span className="hud-heading grow" id="shortBreak" onClick={() => this.setState({interval: (5 * 60), buttonActive: "shortBreak"})}>Short Break</span>
         <span className="hud-heading grow" id="longBreak" onClick={() => this.setState({interval: (10* 60), buttonActive: "longBreak"})}>Long Break</span>
       </div>
 

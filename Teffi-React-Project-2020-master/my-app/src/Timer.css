@@ -94,6 +94,15 @@
     background-color: #e1ebf2;
   }
 
+  .hud-heading:hover {
+    background-color: honeydew;
+}
+
+.hud-heading:focus {
+  background-color: honeydew;
+}
+
+
   .control-start,
   .control-stop,
   .control-reset {

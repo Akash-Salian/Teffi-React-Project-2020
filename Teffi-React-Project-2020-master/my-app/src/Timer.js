@@ -1,42 +1,40 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
 import Time from './Time';
 import fiveMusic from './betterdays5min.wav';
 import tenMusic from './betterday10min.mp3';
 import Sound from './Sound';
 import 'tachyons';
 
-
+//Initializing Global Background audio. 
 const relaxingFive = new Audio(fiveMusic);
 const relaxingTen = new Audio(tenMusic);
 
-class Timer extends Component {
 
+export default class Timer extends Component {
+
+  //Constructor to create states
   constructor() {
-
     super();
     this.state = {
       time: 0,
       sound: "on",
-      toggleSound: "loud",
       buttonActive: "",
       timerRunning: false,
       interval: 25 * 60,
       resetTimer: false,
     };
 
-    //binding methods to this   
+    //Binding all methods to this   
     this.handleStart = this.handleStart.bind(this);
     this.handleStop = this.handleStop.bind(this);
     this.handleReset = this.handleReset.bind(this);
     this.handleSound = this.handleSound.bind(this);
     this.handleChangeTimer = this.handleChangeTimer.bind(this);
-
   }
+  //Constructor Ends
 
-  //Starts the timer
+  //Starts the timer and plays music
   handleStart() {
-
     if (this.state.timerRunning === false) {
       this.timer = setInterval(() => {
 
@@ -51,15 +49,10 @@ class Timer extends Component {
         })
       },
         1000);
-
       // Display Start on the console to check functionality
       console.log("Start");
 
-
       // Control the background Music for Breaks
-
-
-
       const playMusic = () => {
 
         if (this.state.sound === "on") {
@@ -69,7 +62,6 @@ class Timer extends Component {
           else if (this.state.sound === "off") {
             relaxingFive.pause();
           }
-
 
           if (this.state.buttonActive === "longBreak") {
             relaxingTen.play();
@@ -82,10 +74,10 @@ class Timer extends Component {
       playMusic()
     }
   }
-  //Start Ends here
+  //Start Timer Ends here
 
 
-  //Stops the timer
+  //Stops the timer and pauses the music
   handleStop() {
     console.log("Stop");
     this.setState({ timerRunning: false })
@@ -95,7 +87,7 @@ class Timer extends Component {
       relaxingTen.pause()
   }
 
-  // Resets the Timer
+  // Resets the Timer and initializes the Audio to 0 timestamp. 
   handleReset() {
     relaxingFive.currentTime = 0;
     relaxingTen.currentTime = 0;
@@ -127,16 +119,13 @@ class Timer extends Component {
         clearInterval(this.timer)
         relaxingTen.pause();
       }
-
-
     }
     resetTimer()
   }
+  //Reset Timer ends
 
-
-  //Control Alarm Audio
+  //Controls Alarm Audio when timer stops
   handleSound() {
-
     const playSound = () => {
       this.alarm = new Audio();
       this.alarm.src = "https://soundbible.com/grab.php?id=1441&type=wav";
@@ -145,25 +134,24 @@ class Timer extends Component {
     playSound()
   }
 
-
+  //Checks timer is 0 and stops, plays ding and resets the timer.
   componentDidUpdate() {
     if (this.state.interval < 1 && this.state.timerRunning === true) {
       this.handleStop()
       this.handleSound()
       this.handleReset()
     }
-
   }
 
+  //Sets the state to off/on from the Sound.js component
   setSound = (sound) => {
     this.setState({
       sound: sound
     })
-
   }
 
 
-  //Swtiching Between Timer 
+  //Swtiching Between Timer and helps to stop the music playing in the background. 
   handleChangeTimer(options) {
     this.setState(options)
     relaxingFive.currentTime = 0;
@@ -171,7 +159,7 @@ class Timer extends Component {
     relaxingFive.pause()
     relaxingTen.pause()
     this.setState({
-        timerRunning: false,
+      timerRunning: false,
     })
     clearInterval(this.timer)
   }
@@ -179,7 +167,6 @@ class Timer extends Component {
 
 
   render() {
-
     return <div className="mid-container" id="mid-container">
       <div className="timer-hud">
         <span className="hud-heading grow" id="pomodoro" onClick={() => this.handleChangeTimer({ interval: (25 * 60), buttonActive: "pomodoro" })}> Pomodoro</span>
@@ -187,26 +174,18 @@ class Timer extends Component {
         <span className="hud-heading grow" id="longBreak" onClick={() => this.handleChangeTimer({ interval: (10 * 60), buttonActive: "longBreak" })}>Long Break</span>
       </div>
 
+      <Time time={this.state.interval} handleStart={this.handleStart}
+        handleStop={this.handleStop} timerRunning={this.state.timerRunning} />
 
-
-      <Time time={this.state.interval} />
-      <Sound sound={this.state.sound} setSound={this.setSound}
-        timerRunning={this.state.timerRunning}
-        music={this.state.buttonActive === "shortBreak" ?
-          relaxingFive :
-          relaxingTen} />
+      <Sound sound={this.state.sound} setSound={this.setSound} timerRunning={this.state.timerRunning}
+        music={this.state.buttonActive === "shortBreak" ? relaxingFive : relaxingTen} />
 
       <div className="timer-controls">
-        <span className="control-start grow shadow-4" onClick={this.handleStart} disabled={this.state.timerRunning}> Start</span>
+        <span className="control-start grow shadow-4" onClick={this.handleStart}> Start</span>
         <span className="control-stop grow shadow-4" onClick={this.handleStop}>Stop</span>
         <span className="control-reset grow shadow-4" onClick={this.handleReset}>Reset</span>
       </div>
 
     </div>
-
   }
-
-
 }
-
-export default Timer;

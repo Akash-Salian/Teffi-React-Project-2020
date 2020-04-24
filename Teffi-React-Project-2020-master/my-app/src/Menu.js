@@ -33,7 +33,7 @@ return <div className="Teffi">
 
     <div className="top-container" id="top-container">
       <div className="bg-filter">
-        <img className="clock grow" href="#mid-container" src={watch} alt="teffi-clock" />
+        <img className="clock grow w3-animate-opacity" href="#mid-container" src={watch} alt="teffi-clock"/>
         <h1 className="main-title">Teffi.</h1>
         <h3>Study Like A Pro!</h3>
       </div>

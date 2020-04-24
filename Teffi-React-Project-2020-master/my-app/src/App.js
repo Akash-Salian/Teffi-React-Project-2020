@@ -13,9 +13,9 @@ import 'tachyons';
 function App() {
   return (
     <div className="App">
-    <Menu />
-    <Timer />
-    <Bottom />
+      <Menu />
+      <Timer />
+      <Bottom />
 
     </div>
   );

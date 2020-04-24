@@ -3,17 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './App.css';
 import './index.css';
-
 import './Menu.css';
-//
 import './Timer.css';
-//import Bottom from './Bottom';
 import './Bottom.css'
 import * as serviceWorker from './serviceWorker';
 
 
 ReactDOM.render(
-    <App />, 
+  <App />,
   document.getElementById('root')
 );
 

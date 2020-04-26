@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-
-const secondsToString = (interval) => {
-    var minutes = Math.floor(interval / (60));
-    var seconds = Math.floor(interval % (60));
-    return `${minutes} : ${seconds < 10 ? "0" + seconds : seconds}`
-}
+import {secondsToString} from './Timeutils';
 
 export default class Time extends Component {
 

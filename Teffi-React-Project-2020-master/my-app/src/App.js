@@ -2,13 +2,8 @@ import React from 'react';
 import './App.css';
 import Menu from './Menu';
 import Timer from './Timer';
-
 import Bottom from './Bottom';
-//import { BrowserRouter as Router, Switch, Route,} from "react-router-dom";
 import 'tachyons';
-
-
-
 
 function App() {
   return (
@@ -16,7 +11,6 @@ function App() {
       <Menu />
       <Timer />
       <Bottom />
-
     </div>
   );
 }

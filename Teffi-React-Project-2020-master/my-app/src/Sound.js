@@ -7,21 +7,17 @@ import 'tachyons';
 class Sound extends Component {
 
     toggleSound = (e) => {
-
         this.ding = new Audio(volumeOn);
 
         if (this.props.sound === "on") {
 
             this.changeSoundAttributes("off",
-                process.env.PUBLIC_URL
-                + mute, e)
+               mute, e)
             this.props.music.pause();
 
-        }
-        else {
+        } else {
             this.changeSoundAttributes("on",
-                process.env.PUBLIC_URL
-                + loud, e)
+               loud, e)
 
             this.ding.play();
             this.props.music.pause()
@@ -50,12 +46,7 @@ class Sound extends Component {
                 </span>
             </>
         )
-
     }
-
-
-
-
 }
 
 export default Sound;

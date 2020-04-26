@@ -8,7 +8,6 @@ class Menu extends Component{
 render (){
 
 return <div className="Teffi">
-
 <div className="fullNav">
     <div className="nav-bar">
       <nav title="main">

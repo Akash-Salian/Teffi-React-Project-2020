@@ -3,6 +3,7 @@ import Time from './Time';
 import fiveMusic from './betterdays5min.wav';
 import tenMusic from './betterday10min.mp3';
 import Sound from './Sound';
+import { secondsToString } from './Timeutils';
 import 'tachyons';
 
 //Initializing Global Background audio. 
@@ -33,7 +34,7 @@ export default class Timer extends Component {
   }
   //Constructor Ends
 
-  //Starts the timer and plays music
+  //Start the timer and play music for breaks
   handleStart() {
     if (this.state.timerRunning === false) {
       this.timer = setInterval(() => {
@@ -53,28 +54,23 @@ export default class Timer extends Component {
       console.log("Start");
 
       // Control the background Music for Breaks
-      const playMusic = () => {
 
-        if (this.state.sound === "on") {
-          if (this.state.buttonActive === "shortBreak") {
-            relaxingFive.play();
-          }
-          else if (this.state.sound === "off") {
-            relaxingFive.pause();
-          }
+      if (this.state.sound === "on") {
+        if (this.state.buttonActive === "shortBreak") {
+          relaxingFive.play();
+        } else if (this.state.sound === "off") {
+          relaxingFive.pause();
+        }
 
-          if (this.state.buttonActive === "longBreak") {
-            relaxingTen.play();
-          }
-          else if (this.state.sound === "off") {
-            relaxingTen.pause();
-          }
+        if (this.state.buttonActive === "longBreak") {
+          relaxingTen.play();
+        } else if (this.state.sound === "off") {
+          relaxingTen.pause();
         }
       }
-      playMusic()
     }
   }
-  //Start Timer Ends here
+
 
 
   //Stops the timer and pauses the music
@@ -92,50 +88,47 @@ export default class Timer extends Component {
     relaxingFive.currentTime = 0;
     relaxingTen.currentTime = 0;
     console.log("Reset");
-    const resetTimer = () => {
-      if (this.state.buttonActive === "pomodoro" || this.state.buttonActive === "") {
-        this.setState({
-          interval: 25 * 60,
-          timerRunning: false,
-          resetTimer: true,
-        })
-        clearInterval(this.timer)
-      }
-      else if (this.state.buttonActive === "shortBreak") {
-        this.setState({
-          interval: 5 * 60,
-          timerRunning: false,
-          resetTimer: true,
-        })
-        clearInterval(this.timer)
-        relaxingFive.pause();
-      }
-      else if (this.state.buttonActive === "longBreak") {
-        this.setState({
-          interval: 10 * 60,
-          timerRunning: false,
-          resetTimer: true,
-        })
-        clearInterval(this.timer)
-        relaxingTen.pause();
-      }
+
+    if (this.state.buttonActive === "pomodoro" || this.state.buttonActive === "") {
+      this.setState({
+        interval: 25 * 60,
+        timerRunning: false,
+        resetTimer: true,
+      })
+      clearInterval(this.timer)
+    } else if (this.state.buttonActive === "shortBreak") {
+      this.setState({
+        interval: 5 * 60,
+        timerRunning: false,
+        resetTimer: true,
+      })
+      clearInterval(this.timer)
+      relaxingFive.pause();
+    } else if (this.state.buttonActive === "longBreak") {
+      this.setState({
+        interval: 10 * 60,
+        timerRunning: false,
+        resetTimer: true,
+      })
+      clearInterval(this.timer)
+      relaxingTen.pause();
     }
-    resetTimer()
   }
-  //Reset Timer ends
 
   //Controls Alarm Audio when timer stops
   handleSound() {
-    const playSound = () => {
-      this.alarm = new Audio();
-      this.alarm.src = "https://soundbible.com/grab.php?id=1441&type=wav";
-      this.state.timerRunning === false ? this.alarm.pause() : this.alarm.play();
-    }
-    playSound()
+
+    this.alarm = new Audio();
+    this.alarm.src = "https://soundbible.com/grab.php?id=1441&type=wav";
+    this.state.timerRunning === false ? this.alarm.pause() : this.alarm.play();
+
   }
 
   //Checks timer is 0 and stops, plays ding and resets the timer.
   componentDidUpdate() {
+
+    this.state.timerRunning === true ? document.title = `${secondsToString(this.state.interval)}`
+      : document.title = "Teffi.";
     if (this.state.interval < 1 && this.state.timerRunning === true) {
       this.handleStop()
       this.handleSound()
